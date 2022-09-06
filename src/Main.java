@@ -17,22 +17,21 @@ public class Main {
 
         Path path = Paths.get("campeonato-brasileiro-full.csv");
 
-        Stream<String> stream = Files.lines(path);
-        //stream
-               // .skip(1)
-                //.map(tabela -> mapToTabela(tabela))
-               // .forEach(tabela -> System.out.println(tabela.getVencedor()));
+        quantidadePartidas(path);
 
+    }
+
+
+
+    //Exercicio1
+    private static void quantidadePartidas(Path path) throws IOException {
+        Stream<String> stream;
         stream = Files.lines(path);
-        stream
+                int soma = (int) stream
                 .skip(1)
                 .map(table -> mapToTabela(table))
-                .filter(table -> table.getData().isEqual())
-                .forEach(table -> System.out.println(table.getVencedor()));
-
-
-
-
+                .count();
+        System.out.println("De 2003 à 2021 foram realizadas " + soma + " partidas");
     }
 
     private static ResultadosCampeonato mapToTabela (String resultadosCampeonato){
